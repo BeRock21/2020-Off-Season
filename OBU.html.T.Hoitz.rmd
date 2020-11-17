@@ -1,0 +1,201 @@
+---
+title: "OnBaseU Movement Programming"
+author: "Brock Hammit"
+date: "10/8/2020"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tinytex)
+library(prettydoc)
+```
+
+```{r, echo=FALSE}
+
+### OnBaseU Screen###############################
+
+##### 1 = Red(Fail) ###########################
+##### 2 = Yellow(semi Pass) ###################
+##### 3 = Green(Pass) #########################
+
+
+pelv.t <- 2
+pelv.r <- 3
+toe.t <- 3
+hip.45 <- 2
+seated.t.rot <- 3
+lat.step <- 3
+wide.sq <- 3
+ank.rock <- 3
+shld.46 <- 1
+sep.test <-3
+hold.ang <- 3
+hitch.test <- 3
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ #### Rotation Tests########
+  
+
+ Rot.Test.Pr <-  case_when(
+   toe.t == 2 & hip.45 == 2 ~ " * **Toe Tap Exercises**- Hip Drops, Starfish Pattern, x 1-2 a Week & **Hip 45 Exercises**- Figure 4 Horizontal Bridge, Hip Drops, Starfish Pattern,  1-2 x a week",
+    toe.t + hip.45 <=3  ~ " * Toe Tap Exercises- Hip Drops, Starfish Pattern, x 1-2 a Week & Hip 45 Exercises- Figure 4 Horizontal Bridge, Hip Drops, Starfish Pattern,  4-5 x a week",
+    toe.t ==  1 ~ '* Toe Tap Exercises- Hip Drops, Starfish Pattern, Hip Flexor Stretch with Side Bend, 4-5 x a week',
+  toe.t == 2 ~ '* **Toe Tap Exercises**- Hip Drops, Starfish Pattern, 1-2 x a week',
+  hip.45 == 1 ~ '* **Hip 45 Exercises**- Figure 4 Horizontal Bridge, Hip Drops, Starfish Pattern, 4-5 x a week',
+  hip.45 == 2 ~ '* **Hip 45 Exercises**- Figure 4 Horizontal Bridge, Hip Drops, Starfish Pattern, 1-2 x a week',
+  TRUE ~ "" 
+  )
+  
+seated.t.rot.pr <- case_when(
+  seated.t.rot == 1 ~ "* **Seated T-Spine Rotation**- Reachbacks IR, Reachbacks ER, Seated Torso turns with Side Bend & Cervical Flexion 4-5 times a week",
+  seated.t.rot == 2 ~ "* **Seated T-Spine Rotation**- Cervical Flexion 1-2 times a week",
+  TRUE ~ "" )
+  
+  #### Core Control Tests#######
+  
+  c.conttol.pr <- case_when( pelv.t == 2 & pelv.r == 2 ~ "* **Pelvic Tilt Exercises**- Cat Dogs, Croc Breaths & Pelvic Rotation Exercises- Bretzel, Reachbacks IR, Reachbacks ER, Seated Torso turns with Side Bend x 1-2 a week",
+                            pelv.t + pelv.r <= 3 ~ "*  **Pelvic Tilt Exercises**- Cat Dogs, Croc Breaths, x 1-2 a week & Pelvic Rotation Exercises- Bretzel, Reachbacks IR, Reachbacks ER, Seated Torso turns with Side Bend x 1-2 a week",
+    pelv.t == 1 ~'**Pelvic Tilt Exercises**-Cat Dogs, Croc Breaths, x 4-5 a week',
+                            pelv.t == 2 ~ ('* **Pelvic Tilt Exercises**- Cat Dogs, Croc Breaths, x 1-2 a week'),
+                             pelv.r == 1 ~ '* **Pelvic Rotation Exercises**- Bretzel, Reachbacks IR, Reachbacks ER, Seated Torso Turns with Side Bend 5 x a week',
+                            pelv.r == 2 ~ '* **Pelvic Rotation Exercises**- Bretzel, Reachbacks IR, Reachbacks ER, Seated Torso Turns with Side Bend 1-2 x a week',
+    TRUE ~ "" )
+  
+  
+  ######### Posture Control Tests##############
+ 
+           lat.step.pr <- case_when(lat.step == 1 ~ '* **Lateral Step Exercises**- Ball Press Overhead, Lateral Hinge SL, SL stance, eyes open, Torso Turns SL x 4-5 a week',
+            lat.step == 2 ~ '* **Lateral Step Exercises**-Ball Press Overhead, Lateral Hinge SL, SL stance, eyes open, Torso Turns SL x 1-2 a week',
+            TRUE ~ "" )
+           
+ p.control.pr <- case_when( wide.sq == 2 &  ank.rock == 2 ~ "* Posture Control Hybrid 5 Day Temp",
+                            wide.sq + ank.rock <=3 ~ "* **Wide Squat Exercises**- Dumbbell Assisted Deep Squat, Get Close to Ball, Half Kneeling Calf Stretch x 1-2 a week & **Ankle Rock Exercises**- Half Kneeling Calf Stretch, Bent Leg Calf Stretch 1-2 x a week ",
+ wide.sq == 1 ~ '* **Wide Squat Exercises**- Dumbbell Assisted Deep Squat, Get Close to Ball, Half Kneeling Calf Stretch 4-5 x a week ', 
+            wide.sq == 2 ~'* **Wide Squat Exercises**- Dumbbell Assisted Deep Squat, Get Close to Ball, Half Kneeling Calf Stretch 1-2 x a week',
+            ank.rock == 1 ~ '* **Ankle Rock Exercises**- Half Kneeling Calf Stretch, Bent Leg Calf Stretch x 4-5 a week',
+            ank.rock == 2 ~'* **Ankle Rock Exercises**- Half Kneeling Calf Stretch, Bent Leg Calf Stretch x 1-2 a week',
+ TRUE ~ "" )
+  
+  
+  ##### Live and Independent Hands #####
+  
+shld.46.pr <- case_when(shld.46 == 1 ~ '* **Shoulder 46 Exercises**- Box Press, Palm-Forearm Presses x 4-5 a week',
+        shld.46 == 2 ~  '* **Shoulder 46 Exercises**- Box Press, Palm-Forearm Presses x 1-2 a week')
+
+      sep.test.pr<- case_when(sep.test == 1 ~ '* **Seperation Test Exercises**- Push-Pulls, Reach Roll Lifts x 4-5 a week',
+        sep.test == 2 ~'* **Seperation Test Exercises**-Push-Pulls, Reach Roll Lifts x 1-2 a week',
+        TRUE ~ "" )
+        
+      hold.ang.pr <- case_when(hold.ang == 1 ~ '* **Holding Angle Exercises**- Wrist Ext, Wrist Flex, KB Upholds X 4-5 a week',
+        hold.ang == 2 ~ '* **Holding Angle Exercises**- Wrist Extensions, Wrist Flexions, KB Upholds X 1-2 a week')
+       
+     hitch.test.pr <-  case_when( hitch.test == 1 ~ '* **Hitch Hiker Exercises**- Hammer Drill, DB Turn & Holds X 4-5 a week' ,
+        hitch.test == 2  ~ '* **Hitch Hiker Exercises**- Hammer Drill, DB Turn & Holds X 1-2 a week',
+        TRUE ~ "" )
+```
+  
+ 
+# Athlete Name: **Terry Hoitz**
+
+
+##                Weekly Movement Programming
+
+### `r if(toe.t + hip.45 + seated.t.rot < 9) {" Rotational Movement"}`
+`r if(toe.t + hip.45 + seated.t.rot < 9) {"For the athletes rotational movement they should be doing:"}`
+
+
+`r   if(toe.t + hip.45 < 6){Rot.Test.Pr}`
+`r if(seated.t.rot < 3) { seated.t.rot.pr}`
+
+### `r if(pelv.r + pelv.t < 6) {"Core Control Movement"}`
+`r if(pelv.r + pelv.t < 6) {"For the athletes core control movement they should be doing:"}` 
+
+`r  if(pelv.r + pelv.t < 6){ c.conttol.pr}`
+
+
+### `r if(lat.step + ank.rock + wide.sq < 9){"Posture Control Movement"}`
+`r if(lat.step + ank.rock + wide.sq < 9){"For the athletes posture control movement they should be doing:"}`
+
+`r if(ank.rock + wide.sq < 6){p.control.pr}`
+`r if(lat.step < 3){lat.step.pr}`
+
+### `r if(shld.46 + sep.test + hold.ang + hitch.test < 12){"Live & Independent Hands Movement"}`
+`r if(shld.46 + sep.test + hold.ang + hitch.test < 12){"For the athletes live and independent hands movement they should be doing:"}`
+
+`r  if(shld.46 < 3){shld.46.pr}`
+`r  if(sep.test < 3){sep.test.pr}` 
+`r  if(hold.ang <3){hold.ang.pr}`
+`r  if(hitch.test < 3){hitch.test.pr}`
+
+
+
